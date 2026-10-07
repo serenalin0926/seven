@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>尋找你的隊輔</title>
+<title>誰～能夠找到我</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;background:#f4f1ea;color:#292622}
@@ -112,12 +112,12 @@ input:focus{border-color:#777}
   <div class="panel">
     <h2>💪 勞動血汗錢</h2>
     <p class="small">輸入勞動代碼並填寫金額，通過驗證後，金額會直接加入你的活動幣金流。此代碼可以重複使用。</p>
-    <button class="btn" onclick="openLaborPopup()">💪 勞動血汗錢</button>
+    <button class="btn" onclick="openLaborPopup()">💪 我破產了💸</button>
   </div>
 
   <div class="panel">
-    <h2 id="cardsTitle">你的神秘卡</h2>
-    <p class="small" id="cardsDescription">你被分配了兩位隊輔，但系統不會直接告訴你是誰。透過活動幣翻開照片線索找出他們。</p>
+    <h2 id="cardsTitle">神秘的老大們</h2>
+    <p class="small" id="cardsDescription">你隸屬他們手中，但他們涉嫌並躲起來了。透過活動幣翻開照片線索找出他們並和他們會合。</p>
     <div class="cards">
       <div>
         <div class="mystery-card" onclick="selectCard(0)"><div class="card-cover">?</div></div>
@@ -190,14 +190,14 @@ input:focus{border-color:#777}
    基本設定區
    ========================================================= */
 const GAME_CONFIG = {
-  title: "尋找你的隊輔",
+  title: "誰～能夠找到我",
   subtitle: "Find Your Leaders",
   
   // 💰 每位玩家第一次登入時擁有多少活動幣
   startingMoney: 30000,
 
   // 🔍 翻開一格照片線索需要多少活動幣
-  clueCost: 30000,
+  clueCost: 15000,
 
   // 💪 勞動血汗錢驗證代碼；之後只要改這裡即可。代碼可以重複使用。
   laborMoneyCode: "LABOR",
@@ -224,8 +224,8 @@ const GAME_CONFIG = {
     codePlaceholder: "輸入完成代碼",
     redeemButton: "領取獎勵",
 
-    cardsTitle: "你的神秘卡",
-    cardsDescription: "你被分配了兩位隊輔，但系統不會直接告訴你是誰。透過活動幣翻開照片線索找出他們。",
+    cardsTitle: "你的老大們",
+    cardsDescription: "你隸屬他們手中，但他們涉嫌並躲起來了。透過活動幣翻開照片線索找出他們並和他們會合。",
     cardA: "神秘卡 A",
     cardB: "神秘卡 B",
 
@@ -247,11 +247,11 @@ const GAME_CONFIG = {
    玩家名單
    --------------------------------------------------------- */
 const players = {
-  "小明": {team:1, leaders:["leader01","leader02"]}, "小華": {team:1, leaders:["leader01","leader02"]}, "小美": {team:1, leaders:["leader01","leader02"]},
-  "小安": {team:2, leaders:["leader03","leader04"]}, "小杰": {team:2, leaders:["leader03","leader04"]}, "小晴": {team:2, leaders:["leader03","leader04"]},
-  "小恩": {team:3, leaders:["leader05","leader06"]}, "小宇": {team:3, leaders:["leader05","leader06"]}, "小妤": {team:3, leaders:["leader05","leader06"]},
-  "小凱": {team:4, leaders:["leader07","leader08"]}, "小涵": {team:4, leaders:["leader07","leader08"]}, "小廷": {team:4, leaders:["leader07","leader08"]},
-  "小葳": {team:5, leaders:["leader09","leader10"]}, "小哲": {team:5, leaders:["leader09","leader10"]}, "小芸": {team:5, leaders:["leader09","leader10"]},
+  "蔡易霖: {team:1, leaders:["leader01","leader02"]}, "陳品翰": {team:1, leaders:["leader01","leader02"]}, "李秉森": {team:1, leaders:["leader01","leader02"]}, "林靖程": {team:1, leaders:["leader01","leader02"]}, "衷睿翎": {team:1, leaders:["leader01","leader02"]}, "陳詒萱": {team:1, leaders:["leader01","leader02"]},
+  "陳品叡": {team:2, leaders:["leader03","leader04"]}, "黃宥翔": {team:2, leaders:["leader03","leader04"]}, "陳奕璁": {team:2, leaders:["leader03","leader04"]}, "林宗澧": {team:2, leaders:["leader03","leader04"]}, "吳承恩": {team:2, leaders:["leader03","leader04"]}, "王品文": {team:2, leaders:["leader03","leader04"]}, "林姷彤": {team:2, leaders:["leader03","leader04"]},
+  "吳柏言": {team:3, leaders:["leader05","leader06"]}, "陳思宇": {team:3, leaders:["leader05","leader06"]}, "許家睿": {team:3, leaders:["leader05","leader06"]}, "魏子傑": {team:3, leaders:["leader05","leader06"]}, "黃睿慈": {team:3, leaders:["leader05","leader06"]}, "楊淨嵐": {team:3, leaders:["leader05","leader06"]},
+  "許爾威": {team:4, leaders:["leader07","leader08"]}, "羅云駿": {team:4, leaders:["leader07","leader08"]}, "陳宥綸": {team:4, leaders:["leader07","leader08"]}, "陳宣齊": {team:4, leaders:["leader07","leader08"]}, "巫若禾": {team:4, leaders:["leader07","leader08"]}, "陳怡廷": {team:4, leaders:["leader07","leader08"]}, "趙忻妤": {team:4, leaders:["leader07","leader08"]},
+  "張家銘": {team:5, leaders:["leader09","leader10"]}, "陳柏睿": {team:5, leaders:["leader09","leader10"]}, "蔡宜勳": {team:5, leaders:["leader09","leader10"]}, "林威丞": {team:5, leaders:["leader09","leader10"]}, "陳穎珊": {team:5, leaders:["leader09","leader10"]}, "方禹絜": {team:5, leaders:["leader09","leader10"]},
   "小翔": {team:6, leaders:["leader11","leader12"]}, "小琳": {team:6, leaders:["leader11","leader12"]}, "小佑": {team:6, leaders:["leader11","leader12"]},
   "小宇軒": {team:7, leaders:["leader13","leader14"]}, "小晴晴": {team:7, leaders:["leader13","leader14"]}, "小哲安": {team:7, leaders:["leader13","leader14"]},
   "小米": {team:8, leaders:["leader15","leader16"]}, "小樂": {team:8, leaders:["leader15","leader16"]}, "小彤": {team:8, leaders:["leader15","leader16"]},
